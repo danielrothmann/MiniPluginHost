@@ -40,10 +40,13 @@ private:
 	ScopedPointer<AudioPluginFormatManager> formatManager;
 	ScopedPointer<AudioPluginInstance> pluginInstance;
 	ScopedPointer<PluginDescription> pluginDescription;
+	ScopedPointer<AudioProcessorEditor> pluginEditor;
 	bool pluginInstantiated = false;
 
 	ScopedPointer<AudioBuffer<float>> audioData;
 	ScopedPointer<MidiBuffer> midiData;
+	ScopedPointer<Image> editorImage;
+	ScopedPointer<Graphics> editorGraphics;
 
 	int maxNameLength = 50;
 };

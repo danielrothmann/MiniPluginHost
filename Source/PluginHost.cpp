@@ -46,6 +46,7 @@ bool PluginHost::instantiatePlugin(char* xmlPluginDescription, double sampleRate
 
 			if (pluginInstance)
 			{
+				// pluginEditor = pluginInstance->createEditorIfNeeded();
 				pluginInstantiated = true;
 				return true;
 			}
@@ -79,6 +80,7 @@ bool PluginHost::releasePlugin()
 {
 	if (pluginInstantiated)
 	{
+		// TODO: Might need to manually delete editor
 		delete pluginInstance;
 		pluginInstantiated = false;
 		return true;
@@ -152,7 +154,6 @@ const char* PluginHost::getParameterName(int index)
 			return name.toRawUTF8();
 		}
 	}
-
 	return nullptr;
 }
 
