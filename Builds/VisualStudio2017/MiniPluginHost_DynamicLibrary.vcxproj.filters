@@ -358,6 +358,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\MiniPluginHostApi.cpp">
+      <Filter>MiniPluginHost\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\PluginHost.cpp">
       <Filter>MiniPluginHost\Source</Filter>
     </ClCompile>
@@ -2046,6 +2049,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\MiniPluginHostApi.h">
+      <Filter>MiniPluginHost\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\PluginHost.h">
       <Filter>MiniPluginHost\Source</Filter>
     </ClInclude>

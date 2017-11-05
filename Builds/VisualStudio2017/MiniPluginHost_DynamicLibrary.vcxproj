@@ -147,6 +147,7 @@
     <Lib/>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\MiniPluginHostApi.cpp"/>
     <ClCompile Include="..\..\Source\PluginHost.cpp"/>
     <ClCompile Include="..\..\Source\PluginsManager.cpp"/>
     <ClCompile Include="..\..\..\..\..\..\..\..\..\Program Files\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
@@ -1703,6 +1704,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\MiniPluginHostApi.h"/>
     <ClInclude Include="..\..\Source\PluginHost.h"/>
     <ClInclude Include="..\..\Source\PluginsManager.h"/>
     <ClInclude Include="..\..\..\..\..\..\..\..\..\Program Files\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>

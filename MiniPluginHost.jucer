@@ -6,6 +6,10 @@
               jucerVersion="5.2.0">
   <MAINGROUP id="jUZ2qA" name="MiniPluginHost">
     <GROUP id="{F9977E87-9151-89A9-4EA3-0FC7CCEA7A56}" name="Source">
+      <FILE id="wTi9Y7" name="MiniPluginHostApi.cpp" compile="1" resource="0"
+            file="Source/MiniPluginHostApi.cpp"/>
+      <FILE id="ePd5rP" name="MiniPluginHostApi.h" compile="0" resource="0"
+            file="Source/MiniPluginHostApi.h"/>
       <FILE id="ggp0mu" name="PluginHost.cpp" compile="1" resource="0" file="Source/PluginHost.cpp"/>
       <FILE id="WeTCoK" name="PluginHost.h" compile="0" resource="0" file="Source/PluginHost.h"/>
       <FILE id="dDIklz" name="PluginsManager.cpp" compile="1" resource="0"
