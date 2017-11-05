@@ -361,6 +361,9 @@
     <ClCompile Include="..\..\Source\PluginHost.cpp">
       <Filter>MiniPluginHost\Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\PluginsManager.cpp">
+      <Filter>MiniPluginHost\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\..\..\..\Program Files\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>
     </ClCompile>
@@ -2044,6 +2047,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\PluginHost.h">
+      <Filter>MiniPluginHost\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\PluginsManager.h">
       <Filter>MiniPluginHost\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\..\..\..\Program Files\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">

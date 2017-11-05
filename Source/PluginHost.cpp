@@ -11,10 +11,14 @@
 
 #include "PluginHost.h"
 
+/**
+*Constructs a host for a single plugin.
+*/
 PluginHost::PluginHost()
 {
 	formatManager = new AudioPluginFormatManager;
-	formatManager->addDefaultFormats();
+	defaultFormat = new VST3PluginFormat();
+	formatManager->addFormat(defaultFormat);
 
 	audioData = new AudioBuffer<float>();
 	midiData = new MidiBuffer();
@@ -46,7 +50,7 @@ bool PluginHost::instantiatePlugin(char* xmlPluginDescription, double sampleRate
 
 			if (pluginInstance)
 			{
-				// pluginEditor = pluginInstance->createEditorIfNeeded();
+				pluginEditor = pluginInstance->createEditorIfNeeded();
 				pluginInstantiated = true;
 				return true;
 			}

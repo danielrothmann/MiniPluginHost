@@ -8,6 +8,10 @@
     <GROUP id="{F9977E87-9151-89A9-4EA3-0FC7CCEA7A56}" name="Source">
       <FILE id="ggp0mu" name="PluginHost.cpp" compile="1" resource="0" file="Source/PluginHost.cpp"/>
       <FILE id="WeTCoK" name="PluginHost.h" compile="0" resource="0" file="Source/PluginHost.h"/>
+      <FILE id="dDIklz" name="PluginsManager.cpp" compile="1" resource="0"
+            file="Source/PluginsManager.cpp"/>
+      <FILE id="PtCLqW" name="PluginsManager.h" compile="0" resource="0"
+            file="Source/PluginsManager.h"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
@@ -52,5 +56,6 @@
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_video" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
-  <JUCEOPTIONS/>
+  <JUCEOPTIONS JUCE_PLUGINHOST_VST="disabled" JUCE_PLUGINHOST_VST3="enabled"
+               JUCE_PLUGINHOST_AU="disabled"/>
 </JUCERPROJECT>
