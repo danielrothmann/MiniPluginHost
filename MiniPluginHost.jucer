@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="uuVKjy" name="MiniPluginHost" displaySplashScreen="1" reportAppUsage="1"
+              splashScreenColour="Dark" projectType="dll" version="1.0.0" bundleIdentifier="com.yourcompany.MiniPluginHost"
+              includeBinaryInAppConfig="1" cppLanguageStandard="11" companyCopyright=""
+              jucerVersion="5.2.0">
+  <MAINGROUP id="jUZ2qA" name="MiniPluginHost">
+    <GROUP id="{F9977E87-9151-89A9-4EA3-0FC7CCEA7A56}" name="Source">
+      <FILE id="ggp0mu" name="PluginHost.cpp" compile="1" resource="0" file="Source/PluginHost.cpp"/>
+      <FILE id="WeTCoK" name="PluginHost.h" compile="0" resource="0" file="Source/PluginHost.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <VS2017 targetFolder="Builds/VisualStudio2017" windowsTargetPlatformVersion="10.0.16299.0">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
+                       linkTimeOptimisation="0" isDebug="1" optimisation="1" targetName="MiniPluginHost"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
+                       linkTimeOptimisation="1" isDebug="0" optimisation="3" targetName="MiniPluginHost"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../../../../../../Program Files/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../../../../Program Files/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../../../../Program Files/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../../../../Program Files/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../../../../Program Files/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../../../../Program Files/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../../../../../Program Files/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../../../../../../Program Files/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../../../../../../Program Files/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../../../../../Program Files/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../../../../Program Files/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../../../../Program Files/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../../../../Program Files/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2017>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>
