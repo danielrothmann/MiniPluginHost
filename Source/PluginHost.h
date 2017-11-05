@@ -12,6 +12,9 @@
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
 
+/**
+* A tiny audio plugin host which can instantiate plugins, process audio and set parameters.
+*/
 class PluginHost
 {
 public:

@@ -12,6 +12,9 @@
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
 
+/**
+ * A wrapper class for the JUCE KnownPluginList for C# interop.
+ */
 class PluginsManager
 {
 public:
