@@ -54,20 +54,24 @@ extern "C" {
 
 	const char* CreateXmlFromList(PluginsManager* manager)
 	{
-		// Allocate new memory for string and return pointer. Callee is responsible for cleanup.
+		// Allocate new memory for string and return pointer.
 		tempString = String(manager->createXmlFromList());
-		const char* new_cstring = static_cast<const char*>(tempString.toUTF8());
-		return new_cstring;
+		auto* pointer = static_cast<const char*>(tempString.toUTF8());
+		return pointer;
 	}
 
 	const char* GetXmlPluginDescriptionForFile(PluginsManager* manager, char* filePath)
 	{
-		return manager->getXmlPluginDescriptionForFile(filePath).toRawUTF8();
+		tempString = String(manager->getXmlPluginDescriptionForFile(filePath));
+		auto* pointer = static_cast<const char*>(tempString.toUTF8());
+		return pointer;
 	}
 
 	const char* GetXmlPluginDescriptionForId(PluginsManager* manager, char* pluginId)
 	{
-		return manager->getXmlPluginDescriptionForId(pluginId).toRawUTF8();
+		tempString = String(manager->getXmlPluginDescriptionForId(pluginId));
+		auto* pointer = static_cast<const char*>(tempString.toUTF8());
+		return pointer;
 	}
 
 	PluginHost* CreatePluginHost()
@@ -117,7 +121,9 @@ extern "C" {
 
 	const char* GetParameterName(PluginHost* host, int index)
 	{
-		return host->getParameterName(index);
+		tempString = String(host->getParameterName(index));
+		auto* pointer = static_cast<const char*>(tempString.toUTF8());
+		return pointer;
 	}
 
 	float GetValueByName(PluginHost* host, char* name)

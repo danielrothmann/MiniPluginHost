@@ -48,8 +48,6 @@ private:
 
 	ScopedPointer<AudioBuffer<float>> audioData;
 	ScopedPointer<MidiBuffer> midiData;
-	ScopedPointer<Image> editorImage;
-	ScopedPointer<Graphics> editorGraphics;
 
 	int maxNameLength = 50;
 };

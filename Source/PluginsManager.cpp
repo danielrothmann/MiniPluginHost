@@ -17,7 +17,7 @@
 PluginsManager::PluginsManager()
 {
 	pluginList = new KnownPluginList();
-	pluginFormat = new VSTPluginFormat();
+	pluginFormat = new VST3PluginFormat();
 }
 
 PluginsManager::~PluginsManager()
