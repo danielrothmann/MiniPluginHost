@@ -41,7 +41,6 @@ private:
 	AudioProcessorParameter* getParameterByName(char* name);
 
 	ScopedPointer<AudioPluginFormatManager> formatManager;
-	ScopedPointer<AudioPluginFormat> defaultFormat;
 	ScopedPointer<AudioPluginInstance> pluginInstance;
 	ScopedPointer<PluginDescription> pluginDescription;
 	ScopedPointer<AudioProcessorEditor> pluginEditor;

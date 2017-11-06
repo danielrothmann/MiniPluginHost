@@ -45,3 +45,5 @@ extern "C" {
 	HOST_API float GetValueByIndex(PluginHost* host, int index);
 	HOST_API bool SetValueByIndex(PluginHost* host, int index, float value);
 }
+
+String tempString;

@@ -17,7 +17,7 @@
 PluginsManager::PluginsManager()
 {
 	pluginList = new KnownPluginList();
-	pluginFormat = new VST3PluginFormat();
+	pluginFormat = new VSTPluginFormat();
 }
 
 PluginsManager::~PluginsManager()
@@ -80,7 +80,7 @@ void PluginsManager::createListFromXml(char* xmlKnownPluginList)
 *Formats known plugin list as XML and returns it.
 *@return A string containing list formatted as XML.
 */
-const char* PluginsManager::createXmlFromList()
+String PluginsManager::createXmlFromList()
 {
 	return convertXmlElementToString(pluginList->createXml());
 }
@@ -90,7 +90,7 @@ const char* PluginsManager::createXmlFromList()
 *@param filePath The file path from which to get plugin.
 *@return A string containing plugin description formatted as XML. If plugin wasn't found, nullptr is returned.
 */
-const char* PluginsManager::getXmlPluginDescriptionForFile(char* filePath)
+String PluginsManager::getXmlPluginDescriptionForFile(char* filePath)
 {
 	auto description = pluginList->getTypeForFile(filePath);
 
@@ -99,7 +99,7 @@ const char* PluginsManager::getXmlPluginDescriptionForFile(char* filePath)
 		return convertXmlElementToString(description->createXml());
 	}
 
-	return nullptr;
+	return "";
 }
 
 /**
@@ -107,7 +107,7 @@ const char* PluginsManager::getXmlPluginDescriptionForFile(char* filePath)
 *@param pluginID The identifier string of the plugin.
 *@return A string containing plugin description formatted as XML. If plugin wasn't found, nullptr is returned.
 */
-const char* PluginsManager::getXmlPluginDescriptionForId(char* pluginID)
+String PluginsManager::getXmlPluginDescriptionForId(char* pluginID)
 {
 	auto description = pluginList->getTypeForIdentifierString(pluginID);
 
@@ -116,7 +116,7 @@ const char* PluginsManager::getXmlPluginDescriptionForId(char* pluginID)
 		return convertXmlElementToString(description->createXml());
 	}
 
-	return nullptr;
+	return "";
 }
 
 /**
@@ -135,7 +135,7 @@ XmlElement* PluginsManager::convertStringToXmlElement(char* data)
 *@param element The element to be formatted.
 *@return An string representing the XML element.
 */
-const char* PluginsManager::convertXmlElementToString(XmlElement* element)
+String PluginsManager::convertXmlElementToString(XmlElement* element)
 {
-	return element->createDocument("").toRawUTF8();
+	return element->createDocument("");
 }

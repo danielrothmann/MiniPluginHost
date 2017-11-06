@@ -28,9 +28,9 @@ public:
 	void clearBlacklist();
 
 	void createListFromXml(char* xmlKnownPluginList);
-	const char* createXmlFromList();
-	const char* getXmlPluginDescriptionForFile(char* filePath);
-	const char* getXmlPluginDescriptionForId(char* pluginID);
+	String createXmlFromList();
+	String getXmlPluginDescriptionForFile(char* filePath);
+	String getXmlPluginDescriptionForId(char* pluginID);
 
 private:
 	ScopedPointer<KnownPluginList> pluginList;
@@ -38,5 +38,5 @@ private:
 	OwnedArray<PluginDescription> descriptions;
 
 	XmlElement* convertStringToXmlElement(char* data);
-	const char* convertXmlElementToString(XmlElement* element);
+	String convertXmlElementToString(XmlElement* element);
 };

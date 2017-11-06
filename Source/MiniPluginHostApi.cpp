@@ -54,17 +54,20 @@ extern "C" {
 
 	const char* CreateXmlFromList(PluginsManager* manager)
 	{
-		return manager->createXmlFromList();
+		// Allocate new memory for string and return pointer. Callee is responsible for cleanup.
+		tempString = String(manager->createXmlFromList());
+		const char* new_cstring = static_cast<const char*>(tempString.toUTF8());
+		return new_cstring;
 	}
 
 	const char* GetXmlPluginDescriptionForFile(PluginsManager* manager, char* filePath)
 	{
-		return manager->getXmlPluginDescriptionForFile(filePath);
+		return manager->getXmlPluginDescriptionForFile(filePath).toRawUTF8();
 	}
 
 	const char* GetXmlPluginDescriptionForId(PluginsManager* manager, char* pluginId)
 	{
-		return manager->getXmlPluginDescriptionForId(pluginId);
+		return manager->getXmlPluginDescriptionForId(pluginId).toRawUTF8();
 	}
 
 	PluginHost* CreatePluginHost()
