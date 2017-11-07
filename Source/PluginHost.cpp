@@ -18,7 +18,7 @@ PluginHost::PluginHost()
 {
 	formatManager = new AudioPluginFormatManager;
 	formatManager->addFormat(new VST3PluginFormat);
-	audioData = new AudioBuffer<float>();
+	audioData = new AudioBuffer<float>(1, 512);
 	midiData = new MidiBuffer();
 }
 
@@ -48,7 +48,7 @@ bool PluginHost::instantiatePlugin(char* xmlPluginDescription, double sampleRate
 
 			if (pluginInstance)
 			{
-				pluginEditor = pluginInstance->createEditorIfNeeded();
+				pluginEditor = pluginInstance->createEditor();
 				pluginInstantiated = true;
 				return true;
 			}
@@ -56,6 +56,14 @@ bool PluginHost::instantiatePlugin(char* xmlPluginDescription, double sampleRate
 	}
 
 	return false;
+}
+
+void PluginHost::prepareToPlay(double sampleRate, int expectedSamplesPerBlock)
+{
+	if (pluginInstantiated)
+	{
+		pluginInstance->prepareToPlay(sampleRate, expectedSamplesPerBlock);
+	}
 }
 
 /**
@@ -70,7 +78,6 @@ bool PluginHost::suspendPlugin(bool shouldBeSuspended)
 		pluginInstance->suspendProcessing(shouldBeSuspended);
 		return true;
 	}
-
 	return false;
 }
 
@@ -100,7 +107,8 @@ void PluginHost::processBlock(float* buffer, int bufferLength, int numChannels)
 {
 	if (pluginInstantiated)
 	{
-		audioData->setDataToReferTo(&buffer, numChannels, bufferLength);
+		audioData = new AudioBuffer<float>(&buffer, numChannels, bufferLength);
+		//audioData->setDataToReferTo(&buffer, numChannels, bufferLength);
 		pluginInstance->processBlock(*audioData, *midiData);
 	}
 }
@@ -230,7 +238,7 @@ bool PluginHost::setValueByIndex(int index, float value)
 {
 	if (pluginInstantiated)
 	{
-		if (index >= 0 && index < pluginInstance->getParameters().size())
+		if (index >= 0 && index < pluginInstance->getNumParameters())
 		{
 			auto param = pluginInstance->getParameters()[index];
 

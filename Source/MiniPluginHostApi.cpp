@@ -22,9 +22,14 @@ extern "C" {
 		delete manager;
 	}
 
-	void ScanAndAdd(PluginsManager* manager, char* filePath, bool dontRescanIfAlreadyInList)
+	bool ScanAndAdd(PluginsManager* manager, char* filePath, bool dontRescanIfAlreadyInList)
 	{
-		manager->scanAndAdd(filePath, dontRescanIfAlreadyInList);
+		return manager->scanAndAdd(filePath, dontRescanIfAlreadyInList);
+	}
+
+	bool ScanDirectory(PluginsManager* manager, char* path, bool dontRescanIfAlreadyInList, bool searchRecursive)
+	{
+		return manager->scanDirectory(path, dontRescanIfAlreadyInList, searchRecursive);
 	}
 
 	void RescanAll(PluginsManager* manager)
@@ -87,6 +92,11 @@ extern "C" {
 	bool InstantiatePlugin(PluginHost* host, char* xmlPluginDescription, double sampleRate, int bufferSize)
 	{
 		return host->instantiatePlugin(xmlPluginDescription, sampleRate, bufferSize);
+	}
+
+	void PrepareToPlay(PluginHost* host, double sampleRate, int expectedSamplesPerBlock)
+	{
+		host->prepareToPlay(sampleRate, expectedSamplesPerBlock);
 	}
 
 	bool SuspendPlugin(PluginHost* host, bool shouldBeSuspended)

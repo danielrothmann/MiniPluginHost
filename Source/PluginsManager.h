@@ -21,7 +21,8 @@ public:
 	PluginsManager();
 	~PluginsManager();
 
-	void scanAndAdd(char* filePath, bool dontRescanIfAlreadyInList);
+	bool scanAndAdd(char* filePath, bool dontRescanIfAlreadyInList);
+	bool scanDirectory(char* path, bool dontRescanIfAlreadyInList, bool searchRecursive);
 	void rescanAll();
 	void addToBlacklist(char* pluginID);
 	void removeFromBlacklist(char* pluginID);

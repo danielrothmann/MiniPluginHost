@@ -22,6 +22,7 @@ public:
 	~PluginHost();
 
 	bool instantiatePlugin(char* xmlPluginDescription, double sampleRate, int bufferSize);
+	void prepareToPlay(double sampleRate, int expectedSamplesPerBlock);
 	bool suspendPlugin(bool shouldBeSuspended);
 	bool releasePlugin();
 

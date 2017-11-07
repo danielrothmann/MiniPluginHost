@@ -19,7 +19,8 @@ extern "C" {
 	// Exposed methods related to plugins manager
 	HOST_API PluginsManager* CreatePluginsManager();
 	HOST_API void DeletePluginsManager(PluginsManager* manager);
-	HOST_API void ScanAndAdd(PluginsManager* manager, char* filePath, bool dontRescanIfAlreadyInList);
+	HOST_API bool ScanAndAdd(PluginsManager* manager, char* filePath, bool dontRescanIfAlreadyInList);
+	HOST_API bool ScanDirectory(PluginsManager* manager, char* path, bool dontRescanIfAlreadyInList, bool searchRecursive);
 	HOST_API void RescanAll(PluginsManager* manager);
 	HOST_API void AddToBlacklist(PluginsManager* manager, char* pluginId);
 	HOST_API void RemoveFromBlacklist(PluginsManager* manager, char* pluginId);
@@ -33,6 +34,7 @@ extern "C" {
 	HOST_API PluginHost* CreatePluginHost();
 	HOST_API void DeletePluginHost(PluginHost* host);
 	HOST_API bool InstantiatePlugin(PluginHost* host, char* xmlPluginDescription, double sampleRate, int bufferSize);
+	HOST_API void PrepareToPlay(PluginHost* host, double sampleRate, int expectedSamplesPerBlock);
 	HOST_API bool SuspendPlugin(PluginHost* host, bool shouldBeSuspended);
 	HOST_API bool ReleasePlugin(PluginHost* host);
 	HOST_API void ProcessBlock(PluginHost* host, float* buffer, int bufferSize, int numChannels);

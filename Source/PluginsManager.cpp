@@ -18,6 +18,7 @@ PluginsManager::PluginsManager()
 {
 	pluginList = new KnownPluginList();
 	pluginFormat = new VST3PluginFormat();
+	descriptions = OwnedArray<PluginDescription>();
 }
 
 PluginsManager::~PluginsManager()
@@ -29,9 +30,34 @@ PluginsManager::~PluginsManager()
 *@param filePath The path to the plugin file.
 *@param dontRescanIfAlreadyInList Wether the plugin should be rescanned if it is already in the list of known plugins.
 */
-void PluginsManager::scanAndAdd(char* filePath, bool dontRescanIfAlreadyInList)
+bool PluginsManager::scanAndAdd(char* filePath, bool dontRescanIfAlreadyInList)
 {
-	pluginList->scanAndAddFile(filePath, dontRescanIfAlreadyInList, descriptions, *pluginFormat);
+	return pluginList->scanAndAddFile(filePath, dontRescanIfAlreadyInList, descriptions, *pluginFormat);
+}
+
+bool PluginsManager::scanDirectory(char* path, bool dontRescanIfAlreadyInList, bool searchRecursive)
+{
+	int numPluginsScanned = 0;
+	FileSearchPath searchPath = FileSearchPath(path);
+
+	PluginDirectoryScanner* scanner = new PluginDirectoryScanner(	*pluginList, 
+																	*pluginFormat, 
+																	searchPath, 
+																	searchRecursive, 
+																	File());
+	bool shouldSearch = true;
+	String scannedPluginName = "";
+
+	while(shouldSearch)
+	{
+		shouldSearch = scanner->scanNextFile(dontRescanIfAlreadyInList, scannedPluginName);
+
+		if (shouldSearch)
+			numPluginsScanned++;
+	}
+
+	delete scanner;
+	return numPluginsScanned >= 1; // TODO: This returns false when one correct vst was scanned
 }
 
 /**
