@@ -32,7 +32,8 @@ public:
 	int getNumOutputs();
 
 	int getNumParameters();
-	const char* getParameterName(int index);
+	int getNumNamedParameters();
+	String getParameterName(int index);
 	float getValueByName(char* name);
 	bool setValueByName(char* name, float value);
 	float getValueByIndex(int index);

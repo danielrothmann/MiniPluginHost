@@ -41,6 +41,7 @@ extern "C" {
 	HOST_API int GetNumInputs(PluginHost* host);
 	HOST_API int GetNumOutputs(PluginHost* host);
 	HOST_API int GetNumParameters(PluginHost* host);
+	HOST_API int GetNumNamedParameters(PluginHost* host);
 	HOST_API const char* GetParameterName(PluginHost* host, int index);
 	HOST_API float GetValueByName(PluginHost* host, char* name);
 	HOST_API bool SetValueByName(PluginHost* host, char* name, float value);

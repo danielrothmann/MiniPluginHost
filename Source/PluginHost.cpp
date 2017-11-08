@@ -58,10 +58,16 @@ bool PluginHost::instantiatePlugin(char* xmlPluginDescription, double sampleRate
 	return false;
 }
 
+/**
+*Prepares the plugin instance for playback.
+*@param sampleRate The sample rate to initialize plugin with.
+*@param expectedSamplesPerBlock The maximum buffer size to expect.
+*/
 void PluginHost::prepareToPlay(double sampleRate, int expectedSamplesPerBlock)
 {
 	if (pluginInstantiated)
 	{
+		pluginInstance->setRateAndBufferSizeDetails(sampleRate, expectedSamplesPerBlock);
 		pluginInstance->prepareToPlay(sampleRate, expectedSamplesPerBlock);
 	}
 }
@@ -144,9 +150,31 @@ int PluginHost::getNumOutputs()
 int PluginHost::getNumParameters()
 {
 	if (pluginInstantiated)
-		return pluginInstance->getParameters().size();
+	{
+		return pluginInstance->getNumParameters();
+	}
 	else
 		return 0;
+}
+
+/**
+*Gets the total number of managed parameters (defined by plugin) on plugin.
+*@return The number of parameters. Returns 0 if plugin is not instantiated or no managed parameters exist.
+*/
+int PluginHost::getNumNamedParameters()
+{
+	if (pluginInstantiated)
+	{
+		for (int i = 0; i < getNumParameters(); i++)
+		{
+			if (getParameterName(i) == "Bypass" || getParameterName(i) == "")
+			{
+				return i;
+			}
+		}
+	}
+	
+	return 0;
 }
 
 /**
@@ -154,17 +182,15 @@ int PluginHost::getNumParameters()
 *@param index The parameter index from which to get name.
 *@return The name of the parameter as const char*. If plugin or parameter does not exist, nullptr is returned.
 */
-const char* PluginHost::getParameterName(int index)
+String PluginHost::getParameterName(int index)
 {
 	if (pluginInstantiated)
 	{
-		String name = pluginInstance->getParameters()[index]->getName(maxNameLength);
-		if (name.isNotEmpty())
-		{
-			return name.toRawUTF8();
-		}
+		if (index >= 0 && index < getNumParameters())
+			return pluginInstance->getParameterName(index);
 	}
-	return nullptr;
+
+	return "";
 }
 
 /**
@@ -176,10 +202,14 @@ float PluginHost::getValueByName(char* name)
 {
 	if (pluginInstantiated)
 	{
-		auto param = getParameterByName(name);
-
-		if (param != nullptr)
-			return param->getValue();
+		String nameToFind = String(name);
+		for (int i = 0; i < getNumNamedParameters(); i++)
+		{
+			if (getParameterName(i) == nameToFind)
+			{
+				return getValueByIndex(i);
+			}
+		}
 	}
 
 	return 0.0f;
@@ -195,15 +225,16 @@ bool PluginHost::setValueByName(char* name, float value)
 {
 	if (pluginInstantiated)
 	{
-		auto param = getParameterByName(name);
-
-		if (param != nullptr)
+		String nameToFind = String(name);
+		for (int i = 0; i < getNumNamedParameters(); i++)
 		{
-			param->setValue(value);
-			return true;
+			if (getParameterName(i) == nameToFind)
+			{
+				setValueByIndex(i, value);
+				return true;
+			}
 		}
 	}
-
 	return false;
 }
 
@@ -216,12 +247,9 @@ float PluginHost::getValueByIndex(int index)
 {
 	if (pluginInstantiated)
 	{
-		if (index >= 0 && index < pluginInstance->getParameters().size())
+		if (index >= 0 && index < getNumParameters())
 		{
-			auto param = pluginInstance->getParameters()[index];
-
-			if (param != nullptr)
-				return param->getValue();
+			return pluginInstance->getParameter(index);
 		}
 	}
 
@@ -238,15 +266,10 @@ bool PluginHost::setValueByIndex(int index, float value)
 {
 	if (pluginInstantiated)
 	{
-		if (index >= 0 && index < pluginInstance->getNumParameters())
+		if (index >= 0 && index < getNumParameters())
 		{
-			auto param = pluginInstance->getParameters()[index];
-
-			if (param != nullptr)
-			{
-				param->setValue(value);
-				return true;
-			}
+			pluginInstance->setParameter(index, value);
+			return true;
 		}
 	}
 
@@ -263,7 +286,6 @@ AudioProcessorParameter* PluginHost::getParameterByName(char* name)
 	ScopedPointer<String> paramName = new String(name);
 	if (paramName->isNotEmpty())
 	{
-		pluginInstance->refreshParameterList();
 		const auto &params = pluginInstance->getParameters();
 
 		for (auto param : params)

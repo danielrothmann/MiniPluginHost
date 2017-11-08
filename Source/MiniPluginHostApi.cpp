@@ -129,6 +129,11 @@ extern "C" {
 		return host->getNumParameters();
 	}
 
+	int GetNumNamedParameters(PluginHost* host)
+	{
+		return host->getNumNamedParameters();
+	}
+
 	const char* GetParameterName(PluginHost* host, int index)
 	{
 		tempString = String(host->getParameterName(index));
